@@ -48,12 +48,14 @@ public class TokenStream {
 
 		// Then check for a comment, and bypass it
 		// but remember that / is also a division operator.
-		while (nextChar == '/') {
+		while (nextChar == '/') 
+		{
 			// Changed if to while to avoid the 2nd line being printed when
 			// there
 			// are two comment lines in a row.
 			nextChar = readChar();
-			if (nextChar == '/') { // If / is followed by another /
+			if (nextChar == '/') 
+				{ // If / is followed by another /
 				// skip rest of line - it's a comment.
 				// look for <cr>, <lf>, <ff>
 				while(!isEndOfLine(nextChar))
@@ -72,6 +74,8 @@ public class TokenStream {
 				t.setType("Operator");
 				return t;
 			}
+			nextChar = readChar();
+			skipWhiteSpace(); //avoids reading spaces in comments
 		}
 
 		// Then check for an operator; recover 2-character operators
